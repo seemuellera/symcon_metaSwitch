@@ -22,14 +22,14 @@
 		$this->RegisterPropertyString("Sender","MetaSwitch");
 		$this->RegisterPropertyInteger("RefreshInterval",0);
 
+		// Variables
+		$this->RegisterVariableBoolean("Status","Status","~Switch");
+
 		$this->RegisterTimer("RefreshInformation", 0 , 'METASWITCH_RefreshInformation($_IPS[\'TARGET\']);');
 
         }
 
 	public function Destroy() {
-
-		// Seems not to be necessary anymore
-		//$this->UnregisterTimer("RefreshInformation");
 
 		// Never delete this line
 		parent::Destroy();
@@ -73,7 +73,6 @@
 
 	public function RefreshInformation() {
 	
-		echo "METASWITCH Refresh Information";	
 	}
 
 	public function SwitchOn() {
