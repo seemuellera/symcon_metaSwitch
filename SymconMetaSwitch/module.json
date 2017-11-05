@@ -1,9 +1,12 @@
 {
   "id": "{857C0E0E-B249-421E-BD50-6D79C1EB1C00}",
-  "name": "SymconMetaSwitch",
+  "name": "MetaSwitch",
   "type": 3,
-  "vendor": "",
-  "aliases": [],
+  "vendor": "Andreas",
+  "aliases": 
+  [
+	  "MetaSwitch"
+  ],
   "parentRequirements": [],
   "childRequirements": [],
   "implemented": [],
