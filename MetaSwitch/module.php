@@ -73,9 +73,25 @@
 	}
 
 	public function RefreshInformation() {
+
+		// Let us assume that alls is off
+		$status = false;
 	
 		$allDevices = $this->GetDevices();
-		print_r($allDevices);
+
+		foreach ($allDevices as $currentDevice) {
+		
+			// If one device is on we set the status to on
+			if (GetValue($currentDevice) ) {
+			
+				$status = true;	
+				// As we have found a single switch on device we can stop processing the loop
+				break;
+			}
+		}
+
+		SetValue($this->GetIDForIdent("Status"), $status);
+
 	}
 
 	public function SwitchOn() {
