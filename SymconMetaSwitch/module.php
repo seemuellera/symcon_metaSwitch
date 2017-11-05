@@ -22,15 +22,31 @@
 		$this->RegisterPropertyString("Sender","SymconMetaSwitch");
 		$this->RegisterPropertyInteger("RefreshInterval",5);
 
-		// Timer
-		$this->RegisterTimer("RefreshInformation", 60, "METASWITCH_RefreshInformation()");
- 
         }
+
+	public function Destroy() {
+	
+		$this->UnregisterTimer("RefreshInformation");
+
+		// Never delete this line
+		parent::Destroy();
+	}
  
         // Überschreibt die intere IPS_ApplyChanges($id) Funktion
         public function ApplyChanges() {
-            // Diese Zeile nicht löschen
-            parent::ApplyChanges();
+
+		if ($this->ReadPropertyInteger("RefreshInterval") != 0 ) {
+		
+			$newInterval = $this->ReadPropertyInteger("RefreshInterval") * 1000;
+			$this->RegisterTimer("RefreshInformation", $newInterval, "METASWITCH_RefreshInformation();");
+		}
+		else {
+		
+			$this->UnregisterTimer("RefreshInformation");
+		}
+
+            	// Diese Zeile nicht löschen
+            	parent::ApplyChanges();
         }
 
 
