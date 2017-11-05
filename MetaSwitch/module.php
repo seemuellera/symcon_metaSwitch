@@ -182,5 +182,29 @@
 		return $allDevices;
 	}
 
+	public function RequestAction($Ident, $Value) {
+	
+	
+		switch ($Ident) {
+		
+			case "Status":
+				// Default Action for Status Variable
+				if ($Value) {
+				
+					$this->SwitchOn();
+				}
+				else {
+				
+					$this->SwitchOff();
+				}
+
+				// Neuen Wert in die Statusvariable schreiben
+				SetValue($this->GetIDForIdent($Ident), $Value);
+				break;
+			default:
+				throw new Exception("Invalid Ident");
+		}
+	}
+
     }
 ?>
