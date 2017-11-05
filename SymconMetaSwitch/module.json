@@ -1,0 +1,11 @@
+{
+  "id": "{857C0E0E-B249-421E-BD50-6D79C1EB1C00}",
+  "name": "SymconMetaSwitch",
+  "type": 3,
+  "vendor": "",
+  "aliases": [],
+  "parentRequirements": [],
+  "childRequirements": [],
+  "implemented": [],
+  "prefix": "METASWITCH"
+}
