@@ -26,6 +26,10 @@
 		$this->RegisterVariableBoolean("Status","Status","~Switch");
 		$this->RegisterVariableString("Devices","Devices");
 
+		// Default Actions
+		$this->EnableAction("Status");
+
+		// Timer
 		$this->RegisterTimer("RefreshInformation", 0 , 'METASWITCH_RefreshInformation($_IPS[\'TARGET\']);');
 
         }
