@@ -129,6 +129,11 @@
 				HUE_SetState($parentId, true);
 				continue;
 			}
+
+			if (preg_match('/MetaSwitch/', $parentModuleName) ) {
+			
+				METASWITCH_SwitchOn($parentId);
+			}
 			
 			IPS_LogMessage($_IPS['SELF'],"METASWITCH - SwitchOn not possible for device $currentDevice - could not identify instance type");
 		}
@@ -164,6 +169,11 @@
 			
 				HUE_SetState($parentId, false);
 				continue;
+			}
+
+			if (preg_match('/MetaSwitch/', $parentModuleName) ) {
+				                        
+				METASWITCH_SwitchOff($parentId);
 			}
 			
 			IPS_LogMessage($_IPS['SELF'],"METASWITCH - SwitchOff not possible for device $currentDevice - could not identify instance type");
