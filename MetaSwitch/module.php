@@ -22,7 +22,7 @@
 		$this->RegisterPropertyString("Sender","MetaSwitch");
 		$this->RegisterPropertyInteger("RefreshInterval",0);
 
-		$this->RegisterTimer("RefreshInformation", 0 , 'METASWITCH_RefreshInformation();');
+		$this->RegisterTimer("RefreshInformation", 0 , 'METASWITCH_RefreshInformation($_IPS[\'TARGET\']);');
 
         }
 
