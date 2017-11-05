@@ -23,7 +23,7 @@
 		$this->RegisterPropertyInteger("RefreshInterval",5);
 
 		// Timer
-		$this->RegisterTimer("RefreshInformation", 60, "METASWITCH_RefreshInformation($id);");
+		$this->RegisterTimer("RefreshInformation", 60, "METASWITCH_RefreshInformation()");
  
         }
  
