@@ -96,7 +96,38 @@
 
 	public function SwitchOn() {
 	
-	
+		$allDevices = $this->GetDevices();
+
+		foreach ($allDevices as $currentDevice) {
+		
+			$currentDeviceDetails = IPS_GetVariable($currentDevice);
+			$parentId = $currentDeviceDetails['VariableAction'];
+
+			if (! IPS_InstanceExists($parentId) ) {
+			
+				IPS_LogMessage($_IPS['SELF'],"METASWITCH - SwitchOn not possible for device $currentDevice - parent instance was not found");
+				// Now we skip this device
+				continue;
+			}
+
+			// Now we need to find out which device type we have to deal with
+			$parentDetails = IPS_GetInstance($parentId);
+			$parentModuleName = $parentDetails['ModuleInfo']['ModuleName'];
+
+			if (preg_match('/Z-Wave/', $parentModuleName) ) {
+			
+				ZW_SwitchMode($parentId, true);
+				continue;
+			}
+
+			if (preg_match('/HUELight/', $parentModuleName) ) {
+			
+				HUE_SetState($parentId, true);
+				continue;
+			}
+			
+			IPS_LogMessage($_IPS['SELF'],"METASWITCH - SwitchOn not possible for device $currentDevice - could not identify instance type");
+		}
 	}
 
 	public function SwitchOff() {
