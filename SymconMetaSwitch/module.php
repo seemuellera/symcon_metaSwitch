@@ -22,13 +22,14 @@
 		$this->RegisterPropertyString("Sender","SymconMetaSwitch");
 		$this->RegisterPropertyInteger("RefreshInterval",0);
 
-		$this->RegisterTimer("RefreshInformation", 0 , "METASWITCH_RefreshInformation($id);");
+		$this->RegisterTimer("RefreshInformation", 0 , 'METASWITCH_RefreshInformation($id);');
 
         }
 
 	public function Destroy() {
-	
-		$this->UnregisterTimer("RefreshInformation");
+
+		// Seems not to be necessary anymore
+		//$this->UnregisterTimer("RefreshInformation");
 
 		// Never delete this line
 		parent::Destroy();
