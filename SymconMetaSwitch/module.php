@@ -37,10 +37,9 @@
         // Überschreibt die intere IPS_ApplyChanges($id) Funktion
         public function ApplyChanges() {
 
-		if ($this->ReadPropertyInteger("RefreshInterval") != 0 ) {
 		
-			$newInterval = $this->ReadPropertyInteger("RefreshInterval") * 1000;
-		}
+		$newInterval = $this->ReadPropertyInteger("RefreshInterval") * 1000;
+		$this->SetTimerInterval("RefreshInformation", $newInterval);
 		
 
             	// Diese Zeile nicht löschen
@@ -73,7 +72,7 @@
 
 	public function RefreshInformation() {
 	
-		
+		echo "METASWITCH Refresh Information";	
 	}
 
 	public function SwitchOn() {
