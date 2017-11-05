@@ -20,7 +20,9 @@
 
 		// Properties
 		$this->RegisterPropertyString("Sender","SymconMetaSwitch");
-		$this->RegisterPropertyInteger("RefreshInterval",5);
+		$this->RegisterPropertyInteger("RefreshInterval",0);
+
+		$this->RegisterTimer("RefreshInformation", 0 , "METASWITCH_RefreshInformation();");
 
         }
 
@@ -38,12 +40,8 @@
 		if ($this->ReadPropertyInteger("RefreshInterval") != 0 ) {
 		
 			$newInterval = $this->ReadPropertyInteger("RefreshInterval") * 1000;
-			$this->RegisterTimer("RefreshInformation", $newInterval, "METASWITCH_RefreshInformation();");
 		}
-		else {
 		
-			$this->UnregisterTimer("RefreshInformation");
-		}
 
             	// Diese Zeile nicht löschen
             	parent::ApplyChanges();
