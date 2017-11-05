@@ -74,6 +74,8 @@
 
 	public function RefreshInformation() {
 	
+		$allDevices = IPS_GetChildrenIDs($this->GetIDForIdent("Devices"));
+		print_r($allDevices);
 	}
 
 	public function SwitchOn() {
