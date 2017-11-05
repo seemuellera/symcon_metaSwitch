@@ -74,7 +74,7 @@
 
 	public function RefreshInformation() {
 	
-		$allDevices = IPS_GetChildrenIDs($this->GetIDForIdent("Devices"));
+		$allDevices = $this->GetDevices();
 		print_r($allDevices);
 	}
 
@@ -86,6 +86,21 @@
 	public function SwitchOff() {
 	
 	
+	}
+
+	protected function GetDevices() {
+	
+		$allLinks = IPS_GetChildrenIDs($this->GetIDForIdent("Devices"));
+
+		$allDevices = Array();
+
+		foreach ($allLinks as $currentLink) {
+		
+			$currentLinkDetails = IPS_GetLink($currentLink);
+			$allDevices[] = $currentLinkDetails['TargetID'];
+		}
+
+		return $allDevices;
 	}
 
     }
