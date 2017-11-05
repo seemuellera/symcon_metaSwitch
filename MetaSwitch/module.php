@@ -1,7 +1,7 @@
 <?php
 
     // Klassendefinition
-    class SymconMetaSwitch extends IPSModule {
+    class MetaSwitch extends IPSModule {
  
         // Der Konstruktor des Moduls
         // Überschreibt den Standard Kontruktor von IPS
@@ -19,7 +19,7 @@
             	parent::Create();
 
 		// Properties
-		$this->RegisterPropertyString("Sender","SymconMetaSwitch");
+		$this->RegisterPropertyString("Sender","MetaSwitch");
 		$this->RegisterPropertyInteger("RefreshInterval",0);
 
 		$this->RegisterTimer("RefreshInformation", 0 , 'METASWITCH_RefreshInformation()');
