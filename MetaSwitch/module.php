@@ -30,7 +30,7 @@ class MetaSwitch extends IPSModule {
 		// Category for triggers
 		$triggerCategoryId = IPS_CreateCategory();
 		// IPS_SetParent($triggerCategoryId, $id);
-		IPS_SetName($triggerCategoryId, $id);
+		IPS_SetName($triggerCategoryId, "test-" . $id);
 
 		// Default Actions
 		$this->EnableAction("Status");
