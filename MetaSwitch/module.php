@@ -188,7 +188,7 @@ class MetaSwitch extends IPSModule {
 	protected function UpdateDeviceTriggers() {
 		
 		$deviceTriggersId = $this->GetIDForIdent("DeviceTriggers");
-		$allDeviceTiggers = IPS_GetChildrenIDs($deviceTriggersId);
+		$allDeviceTriggers = IPS_GetChildrenIDs($deviceTriggersId);
 		$allDevices = $this->GetDevices();
 		
 		$allDeviceTriggerNames = Array();
