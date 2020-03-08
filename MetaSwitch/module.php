@@ -32,7 +32,7 @@ class MetaSwitch extends IPSModule {
 		$this->EnableAction("Status");
 
 		// Timer
-		$this->RegisterTimer("RefreshInformation", 0 , 'METASWITCH_RefreshInformation($_IPS[\'TARGET\']);');
+		// $this->RegisterTimer("RefreshInformation", 0 , 'METASWITCH_RefreshInformation($_IPS[\'TARGET\']);');
 
     }
 
@@ -47,7 +47,7 @@ class MetaSwitch extends IPSModule {
 
 		
 		$newInterval = $this->ReadPropertyInteger("RefreshInterval") * 1000;
-		$this->SetTimerInterval("RefreshInformation", $newInterval);
+		// $this->SetTimerInterval("RefreshInformation", $newInterval);
 		
 
        	// Diese Zeile nicht löschen
@@ -201,9 +201,12 @@ class MetaSwitch extends IPSModule {
 			$allDeviceTriggerNames[] = $currentDeviceTriggerName;
 		}
 		
+		// Create missing devices
 		foreach ($allDevices as $currentDevice) {
 			
 			if (! in_array($currentDevice, $allDeviceTriggerNames) ) {
+				
+				IPS_LogMessage($_IPS['SELF'],"METASWITCH - Creating missing event trigger for device $currentDevice");
 				
 				$currentEventId = IPS_CreateEvent(0);
 				IPS_SetParent($currentEventId, $deviceTriggersId);
@@ -211,6 +214,19 @@ class MetaSwitch extends IPSModule {
 				IPS_SetEventTrigger($currentEventId, 1, $currentDevice);
 				IPS_SetEventScript($currentEventId, 'METASWITCH_RefreshInformation(' . $instanceId . ');');
 				IPS_SetEventActive($currentEventId, true);
+			}
+		}
+		
+		// Delete surplus devices
+		foreach ($allDeviceTriggers as $currentDeviceTrigger) {
+			
+			$currentDeviceTriggerName = IPS_GetName($currentDeviceTrigger);
+			
+			if (! in_array($currentDeviceTriggerName, $allDevices) ) {
+				
+				IPS_LogMessage($_IPS['SELF'],"METASWITCH - Removing surplus device trigger $currentDeviceTrigger");
+				
+				IPS_DeleteEvent($currentDeviceTrigger);
 			}
 		}
 	}
