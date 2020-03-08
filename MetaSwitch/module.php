@@ -193,6 +193,8 @@ class MetaSwitch extends IPSModule {
 		
 		$allDeviceTriggerNames = Array();
 		
+		print_
+		
 		foreach ($allDeviceTriggers as $currentDeviceTrigger) {
 			
 			$currentDeviceTriggerName = IPS_GetName($currentDeviceTrigger);
@@ -207,7 +209,7 @@ class MetaSwitch extends IPSModule {
 				IPS_SetParent($currentEventId, $deviceTriggersId);
 				IPS_SetName($currentEventId, $currentDevice);
 				IPS_SetEventTrigger($currentEventId, 1, $currentDevice);
-				IPS_SetEventScript($currentEventId, 'METASWITCH_RefreshInformation(' . $_IPS['SELF'] . ');');
+				IPS_SetEventScript($currentEventId, 'METASWITCH_RefreshInformation(' . $id . ');');
 				IPS_SetEventActive($currentEventId, true);
 			}
 		}
