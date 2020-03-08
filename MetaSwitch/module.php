@@ -97,6 +97,8 @@ class MetaSwitch extends IPSModule {
 		}
 
 		SetValue($this->GetIDForIdent("Status"), $status);
+		
+		$this->UpdateDeviceTriggers();
 
 	}
 
@@ -181,6 +183,25 @@ class MetaSwitch extends IPSModule {
 			IPS_LogMessage($_IPS['SELF'],"METASWITCH - SwitchOff not possible for device $currentDevice - could not identify instance type");
 		}
 
+	}
+	
+	protected function UpdateDeviceTriggers() {
+		
+		$deviceTriggersId = $this->GetIDForIdent("DeviceTriggers");
+		$allDeviceTiggers = IPS_GetChildrenIDs($deviceTriggersId);
+		$allDevices = $this->GetDevices();
+		
+		foreach ($allDevices as $currentDevice) {
+			
+			if (! in_array($currentDevice, $allDeviceTiggers) ) {
+				
+				$currentEventId = IPS_CreateEvent(0);
+				IPS_SetParent($currentEventId, $deviceTriggersId);
+				IPS_SetName($currentEventId, $deviceTriggersId);
+				IPS_SetEventTrigger($currentEventId, 1, $currentDevice);
+				IPS_SetEventActive($currentEventId, true);
+			}
+		}
 	}
 
 	protected function GetDevices() {
