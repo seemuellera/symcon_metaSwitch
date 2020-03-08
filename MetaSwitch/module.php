@@ -191,9 +191,17 @@ class MetaSwitch extends IPSModule {
 		$allDeviceTiggers = IPS_GetChildrenIDs($deviceTriggersId);
 		$allDevices = $this->GetDevices();
 		
+		$allDeviceTriggerNames = Array();
+		
+		foreach ($allDeviceTriggers as $currentDeviceTrigger) {
+			
+			$currentDeviceTriggerName = IPS_GetName($currentDeviceTrigger);
+			$allDeviceTriggerNames[] = currentDeviceTriggerName;
+		}
+		
 		foreach ($allDevices as $currentDevice) {
 			
-			if (! in_array($currentDevice, $allDeviceTiggers) ) {
+			if (! in_array($currentDevice, $allDeviceTriggerNames) ) {
 				
 				$currentEventId = IPS_CreateEvent(0);
 				IPS_SetParent($currentEventId, $deviceTriggersId);
