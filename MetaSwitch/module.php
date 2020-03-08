@@ -196,7 +196,7 @@ class MetaSwitch extends IPSModule {
 		foreach ($allDeviceTriggers as $currentDeviceTrigger) {
 			
 			$currentDeviceTriggerName = IPS_GetName($currentDeviceTrigger);
-			$allDeviceTriggerNames[] = currentDeviceTriggerName;
+			$allDeviceTriggerNames[] = $currentDeviceTriggerName;
 		}
 		
 		foreach ($allDevices as $currentDevice) {
