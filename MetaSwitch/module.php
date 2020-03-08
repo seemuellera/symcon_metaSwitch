@@ -26,7 +26,7 @@ class MetaSwitch extends IPSModule {
 		// Variables
 		$this->RegisterVariableBoolean("Status","Status","~Switch");
 		$this->RegisterVariableString("Devices","Devices");
-		$this->RegisterVariableString("DevicesTriggers","DeviceTriggers");
+		$this->RegisterVariableString("DeviceTriggers","DeviceTriggers");
 
 		// Default Actions
 		$this->EnableAction("Status");
