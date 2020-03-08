@@ -26,11 +26,7 @@ class MetaSwitch extends IPSModule {
 		// Variables
 		$this->RegisterVariableBoolean("Status","Status","~Switch");
 		$this->RegisterVariableString("Devices","Devices");
-		
-		// Category for triggers
-		$triggerCategoryId = IPS_CreateCategory();
-		// IPS_SetParent($triggerCategoryId, $id);
-		IPS_SetName($triggerCategoryId, "test-" . $id);
+		$this->RegisterVariableString("Devices","DeviceTriggers");
 
 		// Default Actions
 		$this->EnableAction("Status");
