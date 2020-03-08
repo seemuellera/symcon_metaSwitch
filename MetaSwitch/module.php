@@ -14,7 +14,7 @@ class MetaSwitch extends IPSModule {
     }
  
     // Überschreibt die interne IPS_Create($id) Funktion
-    public function Create() {
+    public function Create($id) {
             
 		// Diese Zeile nicht löschen.
 		parent::Create();
@@ -28,11 +28,9 @@ class MetaSwitch extends IPSModule {
 		$this->RegisterVariableString("Devices","Devices");
 		
 		// Category for triggers
-		/*
 		$triggerCategoryId = IPS_CreateCategory();
 		IPS_SetParent($triggerCategoryId, $id);
 		IPS_SetName($triggerCategoryId, "DeviceTriggers");
-		*/
 
 		// Default Actions
 		$this->EnableAction("Status");
