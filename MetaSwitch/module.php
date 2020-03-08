@@ -1,22 +1,23 @@
 <?php
 
-    // Klassendefinition
-    class MetaSwitch extends IPSModule {
+// Klassendefinition
+class MetaSwitch extends IPSModule {
  
-        // Der Konstruktor des Moduls
-        // Überschreibt den Standard Kontruktor von IPS
-        public function __construct($InstanceID) {
-            // Diese Zeile nicht löschen
-            parent::__construct($InstanceID);
+	// Der Konstruktor des Moduls
+	// Überschreibt den Standard Kontruktor von IPS
+	public function __construct($InstanceID) {
+
+		// Diese Zeile nicht löschen
+        parent::__construct($InstanceID);
  
-            // Selbsterstellter Code
-        }
+        // Selbsterstellter Code
+    }
  
-        // Überschreibt die interne IPS_Create($id) Funktion
-        public function Create() {
+    // Überschreibt die interne IPS_Create($id) Funktion
+    public function Create() {
             
 		// Diese Zeile nicht löschen.
-            	parent::Create();
+		parent::Create();
 
 		// Properties
 		$this->RegisterPropertyString("Sender","MetaSwitch");
@@ -25,6 +26,11 @@
 		// Variables
 		$this->RegisterVariableBoolean("Status","Status","~Switch");
 		$this->RegisterVariableString("Devices","Devices");
+		
+		// Category for triggers
+		$triggerCategoryId = IPS_CreateCategory();
+		IPS_SetParent($triggerCategoryId, $id);
+		IPS_SetName($triggerCategoryId, "DeviceTriggers");
 
 		// Default Actions
 		$this->EnableAction("Status");
@@ -32,7 +38,7 @@
 		// Timer
 		$this->RegisterTimer("RefreshInformation", 0 , 'METASWITCH_RefreshInformation($_IPS[\'TARGET\']);');
 
-        }
+    }
 
 	public function Destroy() {
 
@@ -40,17 +46,17 @@
 		parent::Destroy();
 	}
  
-        // Überschreibt die intere IPS_ApplyChanges($id) Funktion
-        public function ApplyChanges() {
+    // Überschreibt die intere IPS_ApplyChanges($id) Funktion
+    public function ApplyChanges() {
 
 		
 		$newInterval = $this->ReadPropertyInteger("RefreshInterval") * 1000;
 		$this->SetTimerInterval("RefreshInformation", $newInterval);
 		
 
-            	// Diese Zeile nicht löschen
-            	parent::ApplyChanges();
-        }
+       	// Diese Zeile nicht löschen
+       	parent::ApplyChanges();
+    }
 
 
 	public function GetConfigurationForm() {
