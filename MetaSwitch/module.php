@@ -197,7 +197,7 @@ class MetaSwitch extends IPSModule {
 				
 				$currentEventId = IPS_CreateEvent(0);
 				IPS_SetParent($currentEventId, $deviceTriggersId);
-				IPS_SetName($currentEventId, $deviceTriggersId);
+				IPS_SetName($currentEventId, $currentDevice);
 				IPS_SetEventTrigger($currentEventId, 1, $currentDevice);
 				IPS_SetEventActive($currentEventId, true);
 			}
