@@ -14,7 +14,7 @@ class MetaSwitch extends IPSModule {
     }
  
     // Überschreibt die interne IPS_Create($id) Funktion
-    public function Create($id) {
+    public function Create() {
             
 		// Diese Zeile nicht löschen.
 		parent::Create();
