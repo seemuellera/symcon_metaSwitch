@@ -32,7 +32,7 @@ class MetaSwitch extends IPSModule {
 		$this->EnableAction("Status");
 
 		$devicesVarId = $this->GetIDForIdent("Devices");
-		$instanceId = $this->IPS_GetParent($devicesVarId);
+		$instanceId = IPS_GetParent($devicesVarId);
 
 		// Timer
 		$this->RegisterTimer("RefreshInformation", 0 , "METASWITCH_RefreshInformation($instanceId);");
