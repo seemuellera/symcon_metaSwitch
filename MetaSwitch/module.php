@@ -32,7 +32,7 @@ class MetaSwitch extends IPSModule {
 		$this->EnableAction("Status");
 
 		// Timer
-		// $this->RegisterTimer("RefreshInformation", 0 , 'METASWITCH_RefreshInformation($_IPS[\'TARGET\']);');
+		$this->RegisterTimer("RefreshInformation", 0 , 'METASWITCH_RefreshInformation($_IPS[\'TARGET\']);');
 
     }
 
@@ -47,7 +47,7 @@ class MetaSwitch extends IPSModule {
 
 		
 		$newInterval = $this->ReadPropertyInteger("RefreshInterval") * 1000;
-		// $this->SetTimerInterval("RefreshInformation", $newInterval);
+		$this->SetTimerInterval("RefreshInformation", $newInterval);
 		
 
        	// Diese Zeile nicht löschen
