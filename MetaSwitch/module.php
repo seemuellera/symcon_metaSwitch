@@ -126,7 +126,7 @@ class MetaSwitch extends IPSModule {
 
 		foreach ($allDevices as $currentDevice) {
 		
-			$result = RequestAction($currentDevice, true);
+			$result = RequestAction($currentDevice, false);
 		
 			if (! $result)  {
 			
